@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<main role="main">
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container text-center">
+      <h1 class="display-3">Welcome</h1>
+      <h1 class="display-4">{{session.username}}</h1>
+    </div>
+  </div>
+</text-center>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+
+            {% for lyrics in data %}
+
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <div class="card-body">
+                    <h5 class="card-title">{{lyrics.artist}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{lyrics.song}}</h6>
+                    <p class="card-text">{{lyrics.lyricsbody}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+
+                        <form action="{{url_for('delete_song', id=lyrics.id)}}" method="post">
+                          <input type="hidden" name="_method" value="Remove">
+                          <input type="submit" value="Delete" class="btn btn-danger">
+                        </form>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+{% endblock %}

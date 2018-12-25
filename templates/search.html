@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<main role="main">
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container text-center">
+      <h1 class="display-3">Select a Model & Query</h1>
+    </div>
+  </div>
+</text-center>
+
+<div class="container">
+    <br/>
+	<div class="row justify-content-center">
+                        <div class="col-12 col-md-10 col-lg-8">
+                          <form class="" action="/searched" method="POST">
+
+                            <select name="query">
+                              {% for querydata in querydata %}
+                              <option  value="{{querydata.id}}">{{querydata.query}}</option>
+                              {% endfor %}
+                            </select>
+
+                            <select name="model">
+                              {% for models in models %}
+                              <option value="{{models}}">{{models}}</option>
+                              {% endfor %}
+
+                            </select>
+
+                            <input type="submit" value="submit">
+
+                          </form>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                  </div>
+
+
+
+</main>
+{% endblock %}

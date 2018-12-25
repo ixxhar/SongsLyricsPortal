@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<main role="main">
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">View All Artists</h1>
+    <p class="lead">Select an Artist to view it's songs.</p>
+  </div>
+</div>
+
+{% for data in data %}
+
+<ul class="list-group">
+  <li class="list-group-item">
+
+    <form action="{{url_for('artist_song_selected', artist=data.artist)}}" method="post">
+      <input type="hidden" name="_method" value="SELECT">
+      <input type="submit" value={{data.artist}} class="btn">
+    </form>
+
+  </li>
+</ul>
+
+
+
+{% endfor %}
+
+</main>
+{% endblock %}

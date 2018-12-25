@@ -1,0 +1,31 @@
+
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="py-5 text-center">
+  <h2>Login</h2>
+  <p class="lead">Enter the form to Login.</p>
+</div>
+
+  <div class="col-md-8 order-md-1">
+    <h4 class="mb-3">Fill out the Fields</h4>
+
+    <form action="" method="POST">
+
+      <div class="mb-3">
+        <label>Username</label>
+        <input type="text" name="username" class="form-control" value={{request.form.username}}>
+      </div>
+
+      <div class="mb-3">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" value={{request.form.password}}>
+      </div>
+
+      <hr class="mb-4">
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+
+    </form>
+  </div>
+</div>
+{% endblock %}

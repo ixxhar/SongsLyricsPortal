@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+      <div class="py-5 text-center">
+        <h2>Register New User</h2>
+        <p class="lead">Enter the form to create an account. With your account you can create your own playlist and can view it any time without have to remember or searching around the web for lyrics.</p>
+      </div>
+
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Fill out the Fields</h4>
+
+          {% from 'includes/_formhelper.html' import render_field %}
+
+          <form class="needs-validation" novalidate="" method="POST" action="">
+
+            <div class="mb-3">
+              {{render_field(form.name, class_="form-control")}}
+            </div>
+
+            <div class="mb-3">
+              {{render_field(form.email, class_="form-control")}}
+            </div>
+
+            <div class="mb-3">
+              {{render_field(form.username, class_="form-control")}}
+            </div>
+
+            <div class="mb-3">
+              {{render_field(form.password, class_="form-control")}}
+            </div>
+
+            <div class="mb-3">
+              {{render_field(form.confirm, class_="form-control")}}
+            </div>
+
+            <hr class="mb-4">
+            <input class="btn btn-primary btn-lg btn-block" type="submit" value="Register">
+
+          </form>
+        </div>
+      </div>
+
+{% endblock %}

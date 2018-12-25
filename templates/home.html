@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron text-center">
+        <div class="container">
+          <h1 class="display-3">Hi, Welcome To Song Lyrics Portal</h1>
+          <p>To search for your favourite song, go to search tab and search, it's that simple! You will get recommendation for that song too.</p>
+          {% if session.logged_in == NULL %}
+            <a href="/search" class="btn btn-info">Search</a>
+            <a href="/register" class="btn btn-primary">Register</a>
+            <a href="/login" class="btn btn-success">Login</a>
+          {% endif %}
+        </div>
+      </div>
+{% endblock %}
