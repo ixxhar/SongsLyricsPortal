@@ -1,11 +1,135 @@
-{% extends 'layout.html' %}
 
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
 
-<main role="main" class="inner cover text-center">
-      <h1 class="cover-heading">About Website</h1>
-      <p class="lead">This Website uses different Information Retrieval techniques for recommeneding different songs to users
-      based on the song's lyrics that they search. </p>
-    </main>
+<head>
+<title>Songs/Lyrics Search Portal</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Music template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.1.2/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog_responsive.css') }}">
 
-{% endblock %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/blog.js') }}" type="text/javascript"></script>
+</head>
+<body>
+
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-center">
+
+						<!-- Logo -->
+						<div class="logo">
+							<a href="/" class="d-flex flex-row align-items-end justify-content-start">
+								<span class="logo_bars d-flex flex-row align-items-end justify-content-between"><span></span><span></span><span></span><span></span><span></span></span>
+								<span class="logo_text" style="font-size: 15px;">Songs/Lyrics Search Portal</span>
+							</a>
+						</div>
+
+            <!-- Main Navigation -->
+						<nav class="main_nav">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+								<li><a href="/">Home</a></li>
+								<li><a href="/search">Search</a></li>
+								<li><a href="/allsong">All Songs</a></li>
+								<li class="active"><a href="/about">About</a></li>
+							</ul>
+						</nav>
+
+            <!-- User area -->
+						<div class="log_reg d-flex flex-row align-items-center justify-content-start">
+							<ul class="d-flex flex-row align-items-start justify-content-start">
+                {% if session.logged_in %}
+								<li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {% else %}
+                <li><a href="/login">Login</a></li>
+								<li><a href="/register">Register</a></li>
+                {% endif %}
+							</ul>
+
+							<!-- Hamburger -->
+							<div class="hamburger d-flex flex-column align-items-end justify-content-between"><div></div><div></div><div></div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Featured News -->
+
+	<div class="featured_news container_reset" style="margin-top:130px">
+		<div class="container">
+			<div class="row">
+
+				<!-- Featured News Image -->
+				<div class="col-xl-5">
+					<div class="featured_news_image">
+						<div class="background_image" style="background-image:url(/static/images/featured_news.jpg)"></div>
+					</div>
+				</div>
+
+				<!-- Featured News Content -->
+				<div class="col-xl-7">
+					<div class="featured_news_content">
+						<div class="featured_news_title">About Me</div>
+						<div class="featured_blog_post_title"><a href="#">Izhar Hussain</a></div>
+						<div class="featured_blog_post_text">
+							<p>This web app is developed as a final year project by Izhar Hussain, the application of this website is to use different information retrieval techniques for the recommendations of music through lyrics for a certain query. The algorithms used for this project are Cosine Similarity, BM25 and WordNet. The Project is supervised by Dr. Shahzad Faisal, a great effort in terms of time and energy was put into this project by the developer, also superviser has been supportive and cooperative. All rights are reserved with the algorithms designers and programmers, as well as the use of this template. </p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="background_image" style="background-image:url(/static/images/footer.jpg)"></div>
+		<div class="footer_content">
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+
+						<!-- Logo -->
+						<div class="logo">
+							<a href="/" class="d-flex flex-row align-items-end justify-content-start">
+								<span class="logo_bars d-flex flex-row align-items-end justify-content-between"><span></span><span></span><span></span><span></span><span></span></span>
+								<span class="logo_text">Songs/Lyrics Search Portal</span>
+							</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="copyright text-center"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;<script type="text/javascript">document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</footer>
+</div>
+
+</body>
+</html>

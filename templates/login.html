@@ -1,31 +1,170 @@
 
-{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block body %}
-<div class="py-5 text-center">
-  <h2>Login</h2>
-  <p class="lead">Enter the form to Login.</p>
+<head>
+<title>Songs/Lyrics Search Portal</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Music template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.1.2/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog_responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='contact.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='contact_responsive.css') }}">
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/blog.js') }}" type="text/javascript"></script>
+
+</head>
+<body>
+
+<div class="super_container">
+
+  <!-- Header -->
+
+	<header class="header">
+
+		{% with messages = get_flashed_messages(with_categories=true) %}
+		  {% if messages %}
+		    {% for category, message in messages %}
+		      <div class="alert alert-{{ category }}">{{ message }}</div>
+		    {% endfor %}
+		  {% endif %}
+		{% endwith %}
+
+		{% if error %}
+		  <div class="alert alert-danger">{{error}}</div>
+		{% endif %}
+
+		{% if msg %}
+		  <div class="alert alert-success">{{msg}}</div>
+		{% endif %}
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-center">
+
+						<!-- Logo -->
+						<div class="logo">
+							<a href="/" class="d-flex flex-row align-items-end justify-content-start">
+								<span class="logo_bars d-flex flex-row align-items-end justify-content-between"><span></span><span></span><span></span><span></span><span></span></span>
+								<span class="logo_text" style="font-size: 15px;">Songs/Lyrics Search Portal</span>
+							</a>
+						</div>
+
+            <!-- Main Navigation -->
+						<nav class="main_nav">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+								<li><a href="/">Home</a></li>
+								<li><a href="/search">Search</a></li>
+								<li><a href="/allsong">All Songs</a></li>
+								<li><a href="/about">About</a></li>
+							</ul>
+						</nav>
+
+            <!-- User area -->
+						<div class="log_reg d-flex flex-row align-items-center justify-content-start">
+							<ul class="d-flex flex-row align-items-start justify-content-start">
+                {% if session.logged_in %}
+								<li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {% else %}
+                <li><a href="/login">Login</a></li>
+								<li><a href="/register">Register</a></li>
+                {% endif %}
+							</ul>
+
+							<!-- Hamburger -->
+							<div class="hamburger d-flex flex-column align-items-end justify-content-between"><div></div><div></div><div></div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Featured News -->
+
+	<div class="featured_news container_reset" style="margin-top:130px">
+		<div class="container">
+			<div class="row">
+
+				<!-- Featured News Image -->
+				<div class="col-xl-5">
+					<div class="featured_news_image">
+						<div class="background_image" style="background-image:url(/static/images/extra_1.jpg)"></div>
+					</div>
+				</div>
+
+				<!-- Featured News Content -->
+				<div class="col-xl-7">
+					<div class="featured_news_content">
+						<div class="featured_news_title">Login</div>
+						<div class="featured_blog_post_title">Enter following Details</div>
+						<div class="featured_blog_post_text">
+
+              <!-- Contact Form -->
+				<div class="col-lg-6 offset-lg-1 contact_col">
+					<div class="contact_form_container">
+						<form action="" method="POST" class="contact_form" id="contact_form">
+							<div>
+								<div class="row">
+									<div class="col contact_input_col" style="margin-top:5px;margin-bottom:5px"><input minlength="7" name="username" style="background-color:white;" type="username" class="contact_input" placeholder="Username" required="required"></div>
+								</div>
+                <div class="row">
+                  <div class="col" style="margin-top:5px;margin-bottom:5px"><input minlength="7" name="password" style="background-color:white;" type="password" class="contact_input" placeholder="Password" required="required"></div>
+                </div>
+							</div>
+							<button type="submit" class="button contact_form_button"><span>Submit</span></button>
+						</form>
+					</div>
+				</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<footer class="footer">
+		<div class="background_image" style="background-image:url(/static/images/footer.jpg)"></div>
+		<div class="footer_content">
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+
+						<!-- Logo -->
+						<div class="logo">
+							<a href="#" class="d-flex flex-row align-items-end justify-content-start">
+								<span class="logo_bars d-flex flex-row align-items-end justify-content-between"><span></span><span></span><span></span><span></span><span></span></span>
+								<span class="logo_text">Songs/Lyrics Search Portal</span>
+							</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="copyright text-center"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script type="text/javascript">document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</footer>
 </div>
 
-  <div class="col-md-8 order-md-1">
-    <h4 class="mb-3">Fill out the Fields</h4>
-
-    <form action="" method="POST">
-
-      <div class="mb-3">
-        <label>Username</label>
-        <input type="text" name="username" class="form-control" value={{request.form.username}}>
-      </div>
-
-      <div class="mb-3">
-        <label>Password</label>
-        <input type="password" name="password" class="form-control" value={{request.form.password}}>
-      </div>
-
-      <hr class="mb-4">
-      <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-
-    </form>
-  </div>
-</div>
-{% endblock %}
+</body>
+</html>

@@ -1,44 +1,161 @@
-{% extends 'layout.html' %}
 
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
 
-<main role="main">
-  <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron">
-    <div class="container text-center">
-      <h1 class="display-3">Select a Model & Query</h1>
-    </div>
-  </div>
-</text-center>
+<head>
+<title>Songs/Lyrics Search Portal</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Music template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.1.2/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='artists.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='artists_responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main_styles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}">
 
-<div class="container">
-    <br/>
-	<div class="row justify-content-center">
-                        <div class="col-12 col-md-10 col-lg-8">
-                          <form class="" action="/searched" method="POST">
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/artists.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/custom.js') }}"  type="text/javascript"></script>
 
-                            <select name="query">
+
+</head>
+<body>
+
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-center">
+
+						<!-- Logo -->
+						<div class="logo">
+							<a href="/" class="d-flex flex-row align-items-end justify-content-start">
+								<span class="logo_bars d-flex flex-row align-items-end justify-content-between"><span></span><span></span><span></span><span></span><span></span></span>
+								<span class="logo_text" style="font-size: 15px;">Songs/Lyrics Search Portal</span>
+							</a>
+						</div>
+
+            <!-- Main Navigation -->
+						<nav class="main_nav">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+								<li><a href="/">Home</a></li>
+								<li class="active"><a href="/search">Search</a></li>
+								<li><a href="/allsong">All Songs</a></li>
+								<li><a href="/about">About</a></li>
+							</ul>
+						</nav>
+
+            <!-- User area -->
+						<div class="log_reg d-flex flex-row align-items-center justify-content-start">
+							<ul class="d-flex flex-row align-items-start justify-content-start">
+                {% if session.logged_in %}
+								<li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {% else %}
+                <li><a href="/login">Login</a></li>
+								<li><a href="/register">Register</a></li>
+                {% endif %}
+							</ul>
+
+							<!-- Hamburger -->
+							<div class="hamburger d-flex flex-column align-items-end justify-content-between"><div></div><div></div><div></div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Featured Artist -->
+
+	<div class="featured_artist">
+		<div class="background_image" style="background-image:url(/static/images/featured_artist_1.jpg)"></div>
+		<div class="container">
+			<div class="row row-lg-eq-height">
+
+				<!-- Featured Artist Content -->
+				<div class="col-lg-6 offset-lg-6">
+					<div class="featured_artist_content">
+						<div class="featured_title"><h1>Select a Model for Search</h1></div>
+						<div class="featured_artist_text">
+							<p>Select your query and model from the dropdown to generate recommendations for you. Each model uses different techniques for generating recommendations, which helps you choose better and more Music! Try it out, it's simple!!!</p>
+						</div>
+
+						<div class="featured_artist_text">
+                      <form class="tickets_form" action="/searched" method="POST">
+												<div class="d-flex flex-md-row flex-column align-items-start justify-content-md-between justify-content-start">
+													<div class="tickets_form_inputs d-flex flex-row align-items-start justify-content-between">
+
+
+                            <select class="tickets_form_input" name="query">
                               {% for querydata in querydata %}
-                              <option  value="{{querydata.id}}">{{querydata.query}}</option>
+                              <option class="custom_dropdown_selected" value="{{querydata.id}}">{{querydata.query}}</option>
                               {% endfor %}
                             </select>
 
-                            <select name="model">
+                            <select class="tickets_form_input" name="model">
                               {% for models in models %}
                               <option value="{{models}}">{{models}}</option>
                               {% endfor %}
-
                             </select>
 
-                            <input type="submit" value="submit">
 
-                          </form>
-                        </div>
-                        <!--end of col-->
-                    </div>
-                  </div>
+													</div>
+                          <button type="submit" value="submit" class="tickets_form_button button"><span>Search</span></button>
+												</div>
+											</form>
+										</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="background_image" style="background-image:url(/static/images/footer.jpg)"></div>
+		<div class="footer_content">
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+
+						<!-- Logo -->
+						<div class="logo">
+							<a href="#" class="d-flex flex-row align-items-end justify-content-start">
+								<span class="logo_bars d-flex flex-row align-items-end justify-content-between"><span></span><span></span><span></span><span></span><span></span></span>
+								<span class="logo_text">Songs/Lyrics Search Portal</span>
+							</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="copyright text-center"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script type="text/javascript">document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</footer>
+</div>
 
 
 
-</main>
-{% endblock %}
+</body>
+</html>

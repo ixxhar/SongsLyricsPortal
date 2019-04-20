@@ -9,23 +9,22 @@
 <meta name="description" content="Music template project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.1.2/bootstrap.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='artist.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='artist_responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog_responsive.css') }}">
 
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/artists.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/artist.js') }}"></script>
+<script src="{{ url_for('static', filename='js/blog.js') }}" type="text/javascript"></script>
+{{ share.load() }}
 
 </head>
 <body>
-	
-
 
 <div class="super_container">
 
-	<!-- Header -->
+  <!-- Header -->
 
 	<header class="header">
+
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -70,43 +69,45 @@
 		</div>
 	</header>
 
-	<!-- Artist -->
+	<!-- Blog -->
 
-	<div class="artist" style="margin-top:150px;margin-bottom:150px">
+	<div class="blog" style="margin-top:150px;margin-bottom:150px">
 		<div class="container">
 			<div class="row">
+				<div class="col">
+					<div class="blog_posts">
 
-				<!-- Artist Info -->
-				<div class="col-lg-6 order-lg-2 order-1">
-					<div class="artist_info">
-						<div class="artist_name"><h1>{{namee}}</h1></div>
+						<!-- Blog Post -->
+						<div class="blog_post">
+							<div class="row">
 
+                {% for lyrics in data %}
 
-            {% for lyrics in data %}
-            <div class="featured_artist_text" style="font-size:30px">
-              <form action="{{url_for('singlesong', id=lyrics.id)}}" method="post">
-              <input type="hidden" name="_method" value="View Song">
-              <input type="submit" value="{{lyrics.song}}" class="btn btn-link">
-              </form>
-            </div>
+								<!-- Blog Post Content -->
+								<div class="col-lg-5 blog_col">
+									<div class="blog_post_content">
+										<h2 class="blog_post_title">{{lyrics.artist}}</h1>
+                    <h3 class="blog_post_info">{{lyrics.song}}</h3>
 
-            <div class="featured_artist_text">
-            <form action="{{url_for('add_playlist_song', id=lyrics.id)}}" method="post">
-              <input type="hidden" name="_method" value="Add Playlist">
-              <input type="submit" value="Add to Playlist" class="btn btn-primary">
-            </form>
-            </div>
+										<div class="blog_post_text">
+											<p>{{lyrics.lyricsbody}}</p>
+										</div>
+										<a href="https://www.youtube.com/results?search_query={{link}}" target="_blank">Watch on YouTube!</a>
+										<div class="blog_post_link">{{ share.create(title='') }}</div>
+									</div>
+								</div>
 
-            {% endfor %}
+                {% endfor %}
 
-	         </div>
+							</div>
+						</div>
+					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
 
-	<!-- Footer -->
+  <!-- Footer -->
 
 	<footer class="footer">
 		<div class="background_image" style="background-image:url(/static/images/footer.jpg)"></div>
