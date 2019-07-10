@@ -65,11 +65,12 @@ def searched():
         #getting all songs with respect to the searched query id
         result = cur.execute("SELECT * FROM songs WHERE id IN (SELECT songid FROM cosinemodel WHERE queryid = %s)",[a])
         data = cur.fetchall()
+        datalenght=len(data)
 
         #app.logger.info(data)
 
         if result > 0:
-            return render_template('searched.html',query=a,model=b,c=c,data=data)
+            return render_template('searched.html',query=a,model=b,c=c,data=data,datalenght=datalenght)
         else:
             msg='No Song recommeneded'
             return render_template('searched.html',msg=msg,query=a,model=b,c=c)
@@ -85,11 +86,13 @@ def searched():
         #getting all songs with respect to the searched query id
         result = cur.execute("SELECT * FROM songs WHERE id IN (SELECT songid FROM wordnetmodel WHERE queryid = %s)",[a])
         data = cur.fetchall()
+        datalenght=len(data)
+
 
         #app.logger.info(data)
 
         if result > 0:
-            return render_template('searched.html',query=a,model=b,c=c,data=data)
+            return render_template('searched.html',query=a,model=b,c=c,data=data,datalenght=datalenght)
         else:
             msg='No Song recommeneded'
             return render_template('searched.html',msg=msg,query=a,model=b,c=c)
@@ -106,11 +109,13 @@ def searched():
         #getting all songs with respect to the searched query id
         result = cur.execute("SELECT * FROM songs WHERE id IN (SELECT songid FROM bm25model WHERE queryid = %s)",[a])
         data = cur.fetchall()
+        datalenght=len(data)
+
 
         #app.logger.info(data)
 
         if result > 0:
-            return render_template('searched.html',query=a,model=b,c=c,data=data)
+            return render_template('searched.html',query=a,model=b,c=c,data=data,datalenght=datalenght)
         else:
             msg='No Song recommeneded'
             return render_template('searched.html',msg=msg,query=a,model=b,c=c)
@@ -136,10 +141,13 @@ def searched():
         bm25result = cur.execute("SELECT * FROM songs WHERE id IN (SELECT songid FROM bm25model WHERE queryid = %s)",[a])
         bm25data = cur.fetchall()
 
-        app.logger.info(cosinedata)
+        #app.logger.info(data)
+        cosinedatalenght=len(cosinedata)
+        wordnetdatalenght=len(wordnetdata)
+        bm25datalenght=len(bm25data)
 
         if cosineresult > 0 or wordnetresult > 0 or bm25result > 0:
-            return render_template('searched.html',query=a,model=b,c=c,cosinedata=cosinedata,wordnetdata=wordnetdata,bm25data=bm25data,checker=1)
+            return render_template('searched.html',query=a,model=b,c=c,cosinedata=cosinedata,wordnetdata=wordnetdata,bm25data=bm25data,checker=1,cosinedatalenght=cosinedatalenght,wordnetdatalenght=wordnetdatalenght,bm25datalenght=bm25datalenght)
         else:
             msg='No Song recommeneded'
             return render_template('searched.html',msg=msg,query=a,model=b,c=c,checker=1)
@@ -151,16 +159,16 @@ def searched():
     return render_template('searched.html',query=a,model=b,c=c)
 
 
-# Register Form Class for wtforms
-class RegisterForm(Form):
-    name = StringField('Name', [validators.Length(min=1, max=50)])
-    username = StringField('Username', [validators.Length(min=4, max=25)])
-    email = StringField('Email', [validators.Length(min=6, max=50)])
-    password = PasswordField('Password', [
-        validators.DataRequired(),
-        validators.EqualTo('confirm', message='Passwords do not match')
-    ])
-    confirm = PasswordField('Confirm Password')
+# # Register Form Class for wtforms
+# class RegisterForm(Form):
+#     name = StringField('Name', [validators.Length(min=1, max=50)])
+#     username = StringField('Username', [validators.Length(min=4, max=25)])
+#     email = StringField('Email', [validators.Length(min=6, max=50)])
+#     password = PasswordField('Password', [
+#         validators.DataRequired(),
+#         validators.EqualTo('confirm', message='Passwords do not match')
+#     ])
+#     confirm = PasswordField('Confirm Password')
 
 
 # User Register
